@@ -1,4 +1,4 @@
-import { GraduationCap } from 'lucide-react';
+import { GraduationCap, Plus, Trash2 } from 'lucide-react';
 import React from 'react'
 
 const EducationForm = ({data,onChange}) => {
@@ -8,7 +8,7 @@ const addEducation = ()=>{
         institution:'',
         degree:'',
         field:'',
-        gradutaion_date:'',
+        graduation_date:"",
         gpa:'',
     };
     onChange([...data,newEducation])
@@ -41,7 +41,7 @@ const updateEducation = (index,field,value) =>{
        {data.length === 0 ? (
         <div className='text-center py-8 text-gray-500'>
          <GraduationCap className='w-12 h-12 mx-auto mb-3 text-gray-300'/>
-         <p>No work education added yet.</p>
+         <p>No education added yet.</p>
          <p className='text-sm'>Click "Add Eduaction" to get started.</p>
         </div>
        ):(
@@ -58,23 +58,23 @@ const updateEducation = (index,field,value) =>{
                  <div className='grid md:grid-cols-2 gap-3'>
 
                    <input value={education.institution || ""} 
-                    onChange={(e)=>updateEducation(index,"instution",e.target.value)} 
+                    onChange={(e)=>updateEducation(index,"institution",e.target.value)} 
                     type="text" placeholder='Institue Name'
                    className='px-3 py-2 text-sm rounded-lg'/>
 
                     <input value={education.degree || ""} 
                     onChange={(e)=>updateEducation(index,"degree",e.target.value)} 
-                    type="text" placeholder='Degree'
+                    type="text" placeholder="Degree (e.g., Bachelor's,Master's)"
                    className='px-3 py-2 text-sm '/>
 
-                   <input value={education.field || ""} 
+                   <input value={education.field|| ""} 
                     onChange={(e)=>updateEducation(index,"field",e.target.value)} 
                     type="text" placeholder='Field of Study'
                    className='px-3 py-2 text-sm  cursor-pointer'/>
 
-                    <input value={education.gradutaion_date || ""} 
-                    onChange={(e)=>updateEducation(index,"gradutaion_date",e.target.value)} 
-                    type="month" disabled={education.is_current}
+                    <input value={education.graduation_date|| ""} 
+                    onChange={(e)=>updateEducation(index,"graduation_date",e.target.value)} 
+                    type="month" 
                    className='px-3 py-2 text-sm  cursor-pointer'/>
                  </div>
 
@@ -83,7 +83,6 @@ const updateEducation = (index,field,value) =>{
                     type="text" placeholder='GPA (optional)'
                    className='px-3 py-2 text-sm  cursor-pointer'/>
                 
-
                </div>
             ))}
         </div>
