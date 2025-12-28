@@ -1,20 +1,26 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 
 const Hero = () => {
 
-const [menuOpen, setMenuOpen] = React.useState(false)
+    const {user} = useSelector(state => state.auth)
 
+const [menuOpen, setMenuOpen] = React.useState(false)
 const logos = [
-    'https://saasly.prebuiltui.com/assets/companies-logo/instagram.svg',
-    'https://saasly.prebuiltui.com/assets/companies-logo/framer.svg',
-    'https://saasly.prebuiltui.com/assets/companies-logo/microsoft.svg',
-    'https://saasly.prebuiltui.com/assets/companies-logo/huawei.svg',
-    'https://saasly.prebuiltui.com/assets/companies-logo/walmart.svg',
-    ]
+    // Using simple-icons (popular CDN)
+    'https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/apple.svg',
+    'https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/microsoft.svg',
+    'https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/google.svg',
+    'https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/amazon.svg',
+    'https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/meta.svg',
+    'https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/netflix.svg',
+    'https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/tesla.svg',
+    'https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/intel.svg'
+]
   return (
      <>
-            <div className="min-h-screen pb-20">
+            <div className="min-h-screen pb-0">
                 {/* Navbar */}
                 <nav className="z-50 flex items-center justify-between w-full py-4 px-6 md:px-16 lg:px-24 xl:px-40 text-sm">
                     <a href="https://prebuiltui.com">
@@ -29,11 +35,14 @@ const logos = [
                     </div>
 
                     <div className="flex gap-2">
-                        <Link to='/app?state=register' className="hidden md:block px-6 py-2 bg-green-500 hover:bg-green-700 active:scale-95 transition-all rounded-full text-white">
+                        <Link to='/app?state=register' className="hidden md:block px-6 py-2 bg-green-500 hover:bg-green-700 active:scale-95 transition-all rounded-full text-white" hidden={user}>
                             Get started
                         </Link>
-                        <Link to='/app?state=login' className="hidden md:block px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900" >
+                        <Link to='/app?state=login' className="hidden md:block px-6 py-2 border active:scale-95 hover:bg-slate-50 transition-all rounded-full text-slate-700 hover:text-slate-900" hidden={user}>
                             Login
+                        </Link>
+                        <Link to='/app' className='hidden md:block px-6 py-2 bg-green-500 hover:bg-green-700 active:scale-95 transition-all rounded-full text-white' hidden={!user}>
+                        Dashboard
                         </Link>
                     </div>
 
@@ -102,9 +111,53 @@ const logos = [
 
                     <p className="py-6 text-slate-600 mt-14">Trusting by leading brands, including</p>
 
-                    <div className="flex flex-wrap justify-between max-sm:justify-center gap-6 max-w-3xl w-full mx-auto py-4" id="logo-container">
-                        {logos.map((logo, index) => <img key={index} src={logo} alt="logo" className="h-6 w-auto max-w-xs" />)}
-                    </div>
+                  <div className="flex flex-wrap justify-center items-center gap-8 md:gap-12 max-w-4xl w-full mx-auto py-8">
+  {logos.map((logo, index) => (
+    <div 
+      key={index} 
+      className="group relative flex items-center justify-center"
+    >
+      <img 
+        src={logo} 
+        alt="company logo" 
+        className="
+          h-8 md:h-10 w-auto 
+          filter 
+          grayscale 
+          opacity-70 
+          contrast-125 
+          brightness-95
+          transition-all 
+          duration-300 
+          ease-in-out
+          hover:grayscale-0 
+          hover:opacity-100 
+          hover:contrast-100 
+          hover:brightness-100
+          hover:scale-110
+          cursor-pointer
+        "
+        onError={(e) => {
+          e.target.onerror = null;
+          e.target.style.display = 'none';
+        }}
+      />
+      {/* Optional subtle hover effect */}
+      <div className="
+        absolute 
+        -inset-3 
+        bg-gradient-to-r from-transparent via-gray-100/10 to-transparent 
+        opacity-0 
+        group-hover:opacity-100 
+        blur-sm 
+        transition-opacity 
+        duration-300
+        rounded-lg
+        -z-10
+      "></div>
+    </div>
+  ))}
+</div>
                 </div>
             </div>
             <style>
