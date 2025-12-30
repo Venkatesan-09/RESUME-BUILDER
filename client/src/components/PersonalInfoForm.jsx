@@ -32,6 +32,7 @@ const fields = [
                     <div className='inline-flex items-center gap-2 mt-5 text-slate-600 hover:text-slate-700 cursor-pointer'>
                         <User className='size-10 p-2.5 border rounded-full'/>
                         Upload user image
+                        <p className='text-sm text-red-500'>This upload photo was not working tempervarely, if you need add photo and download it without save</p>
                     </div>
                 )}
                 <input type="file" accept='image/jpeg,image/png' className='hidden' onChange={(e)=>handleChange('image',e.target.files[0])} />
