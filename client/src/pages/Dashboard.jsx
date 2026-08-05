@@ -17,10 +17,11 @@ const [showCreateResume,setShowCreateResume] = useState(false)
 const [showUploadResume,setShowUploadResume] = useState(false)
 const [title,setTitle] = useState('')
 const [resume,setResume] = useState(null)
+const [resumeText, setResumeText] = useState('')
 const [editResumeId,setEditResumeId] = useState('')
 const [isLoading,setIsLoading] = useState(false)
 const navigate = useNavigate();
- const [resumeFile, setResumeFile] = useState(null);
+const [resumeFile, setResumeFile] = useState(null);
 
 const loadAllResumes = async ()=>{
   //  setAllResumes(dummyResumeData)

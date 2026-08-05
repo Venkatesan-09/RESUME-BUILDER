@@ -1,23 +1,23 @@
 import { Plus, Trash2 } from 'lucide-react';
 import React from 'react'
 
-const ProjectForm = ({data,onChange}) => {
+const projectForm = ({data,onChange}) => {
 
-const addProject = ()=>{
-    const newProject = {
+const addproject = ()=>{
+    const newproject = {
        name:'',
        type:'',
        description:"",
     };
-    onChange([...data,newProject])
+    onChange([...data,newproject])
 }
 
-const removeProject = (index) =>{
+const removeproject = (index) =>{
     const updated = data.filter((_,i)=> i !== index);
     onChange(updated)
 }
 
-const updateProject = (index,field,value) =>{
+const updateproject = (index,field,value) =>{
     const updated = [...data];
     updated[index] = {...updated[index],[field]:value}
     onChange(updated)
@@ -27,12 +27,12 @@ const updateProject = (index,field,value) =>{
      <div>
        <div className='flex items-center justify-between'>
            <div>
-            <h3 className='flex items-center gap-2 text-lg font-semibold text-gray-900'>Projects</h3>
-            <p className='text-sm text-gray-500'>Add your Projects</p>
+            <h3 className='flex items-center gap-2 text-lg font-semibold text-gray-900'>project</h3>
+            <p className='text-sm text-gray-500'>Add your projects</p>
            </div>
-           <button onClick={addProject} className='flex items-center justify-between gap-2 px-3 py-1 text-sm bg-green-100 text-green-700 rounded-lg hover:bg-green-200
+           <button onClick={addproject} className='flex items-center justify-between gap-2 px-3 py-1 text-sm bg-green-100 text-green-700 rounded-lg hover:bg-green-200
            teansition-colors disabled:opacity-50'>
-            <Plus className='size-4'/> Add Project
+            <Plus className='size-4'/> Add project
            </button>
         </div>
 
@@ -41,8 +41,8 @@ const updateProject = (index,field,value) =>{
             {data.map((project,index)=>(
                <div key={index} className='p-4 border border-gray-200 rounded-lg space-y-3'>
                  <div className='flex justify-between items-start'>
-                   <h4>Project #{index + 1}</h4>
-                   <button onClick={()=>removeProject(index)} className='text-red-500 hover:text-red-700 transition-colors'>
+                   <h4>project #{index + 1}</h4>
+                   <button onClick={()=>removeproject(index)} className='text-red-500 hover:text-red-700 transition-colors'>
                     <Trash2 className='size-4'/>
                    </button>
                  </div>
@@ -50,18 +50,18 @@ const updateProject = (index,field,value) =>{
                  <div className='grid  gap-3'>
 
                    <input value={project.name || ""} 
-                    onChange={(e)=>updateProject(index,"name",e.target.value)} 
-                    type="text" placeholder='Project Name'
+                    onChange={(e)=>updateproject(index,"name",e.target.value)} 
+                    type="text" placeholder='project Name'
                    className='px-3 py-2 text-sm rounded-lg'/>
  
                   <input value={project.type || ""} 
-                    onChange={(e)=>updateProject(index,"type",e.target.value)} 
-                    type="text" placeholder='Project Type'
+                    onChange={(e)=>updateproject(index,"type",e.target.value)} 
+                    type="text" placeholder='project Type'
                    className='px-3 py-2 text-sm rounded-lg'/>                   
 
                   
                     <textarea rows={4} value={project.description || ""} 
-                    onChange={(e)=>updateProject(index,"description",e.target.value)} 
+                    onChange={(e)=>updateproject(index,"description",e.target.value)} 
                     type="text" placeholder='Describe your project'
                    className='w-full px-3 py-2 text-sm rounded-lg resize-none'/>
                     
@@ -77,4 +77,4 @@ const updateProject = (index,field,value) =>{
   )
 }
 
-export default ProjectForm
+export default projectForm

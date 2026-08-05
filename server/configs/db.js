@@ -5,7 +5,7 @@ const connectDB = async ()=>{
         mongoose.connection.on("connected",()=>{console.log("Datadase connected successfully");
         })
 
-        let mongodbURI = process.env.mongodb_URI;
+        let mongodbURI = process.env.MONGODB_URI;
         const projectName = 'resuem-builder';
 
         if(!mongodbURI){

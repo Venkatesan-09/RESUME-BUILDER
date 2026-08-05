@@ -7,7 +7,8 @@ import fs from 'fs';
 import mongoose from 'mongoose';
 import cloudinary from '../configs/Cloudinary.js';
 import uploadcare from '../configs/uploadCare.js';
-// Add this import at the top of your file
+import path from 'path';
+
 
 
 // POST:/api/resumes/create

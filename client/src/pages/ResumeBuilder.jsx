@@ -21,11 +21,13 @@ import { debounce } from 'lodash';
 //  const navigate = useNavigate(); 
 const ResumeBuilder = () => {
 
-    // Get resumeId from URL if using React Router
-  const { id } = useParams();
+  // Get resumeId from URL if using React Router
+  const { resumeId: urlResumeId } = useParams();
   
-  // State declarations - MAKE SURE resumeId IS SET PROPERLY
-  const [resumeId, setResumeId] = useState(id || ''); // This might be empty!
+  const {token} = useSelector(state => state.auth);
+  
+  // State declarations
+  const [resumeId, setResumeId] = useState(urlResumeId || '');
 
    // Create new resume
   // const createNewResume = async () => {
@@ -155,8 +157,8 @@ useEffect(() => {
   const loadResume = async () => {
     try {
       // If we have an ID from URL, load that resume
-      if (id) {
-        await loadExistingResume(id);
+      if (urlResumeId) {
+        await loadExistingResume(urlResumeId);
       } 
       // Otherwise, check if user has any resumes
       else if (token) {
@@ -176,13 +178,10 @@ useEffect(() => {
 
   // OR if you're getting resumeId from URL
   useEffect(() => {
-    if (id) {
-      setResumeId(id);
+    if (urlResumeId) {
+      setResumeId(urlResumeId);
     }
-  }, [id]);
-
- // const {resumeId} = useParams()
-  const {token} = useSelector(state => state.auth)
+  }, [urlResumeId]);
 
 const [resumeData,setResumeData] = useState({
   _id:'',

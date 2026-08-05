@@ -1,37 +1,20 @@
-// // import multer from 'multer'
-
-// // const storage = multer.diskStorage({});
-
-// // const upload = multer({storage})
-
-
-
-// // In your backend setup
-// // Update multer configuration to memory storage
-// import multer from 'multer';
-
-// // Use memory storage instead of disk storage
-// const storage = multer.memoryStorage();
-
-// const upload = multer({ 
-//   storage: storage,
-//   limits: {
-//     fileSize: 5 * 1024 * 1024, // 5MB limit
-//   }
-// });
-
-// export default upload
-
 import multer from 'multer';
 
 const storage = multer.memoryStorage(); // Store file in memory
 
 const fileFilter = (req, file, cb) => {
-    // Accept only PDF files
-    if (file.mimetype === 'application/pdf') {
+    // Accept image files (for profile photos)
+    const allowedMimeTypes = [
+        'image/jpeg',
+        'image/jpg',
+        'image/png',
+        'image/webp',
+        'image/gif'
+    ];
+    if (allowedMimeTypes.includes(file.mimetype)) {
         cb(null, true);
     } else {
-        cb(new Error('Only PDF files are allowed'), false);
+        cb(new Error('Only image files (JPEG, PNG, WebP, GIF) are allowed'), false);
     }
 };
 

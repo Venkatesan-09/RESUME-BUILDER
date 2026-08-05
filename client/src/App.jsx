@@ -47,7 +47,7 @@ useEffect(()=>{
 
       <Route path='app' element={<Layout/>}>
         <Route index element={<Dashboard/>}/>
-        <Route path='builder/:resumeId' element={<ResumeBuilder/>}/> own
+        <Route path='builder/:resumeId' element={<ResumeBuilder/>}/>
         
       </Route>
 
